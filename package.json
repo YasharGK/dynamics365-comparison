@@ -1,7 +1,7 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Script to visually compare Dynamics 365 artefacts, like plug-ins and endpoints, between a source and destination environment",
   "license": "MIT",
   "repository": {
@@ -30,14 +30,13 @@
   "bin": "./lib/cli.js",
   "types": "lib/cli",
   "scripts": {
-    "start": "npm run build && node lib/cli.js \"\" \"index.html\"",
+    "start": "npm run build && node lib/cli.js -k \"Microsoft\" -o \"index.html\" soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl",
     "report": "node report-generator.js",
     "clean": "rimraf lib && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "lintFix": "tslint --fix \"src/**/*.ts\"",
     "prepublishOnly": "npm run build",
-    "prebuild2": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "prebuild": "npm run clean && copyfiles -f src/template/* lib/template && copyfiles -f node_modules/diff/dist/diff.min.js lib/out",
     "build": "tsc --pretty",
     "test": "jest",

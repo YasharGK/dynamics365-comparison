@@ -3,14 +3,6 @@ import open = require("open");
 import { CrmOrganisationService } from "./services/CrmOrganisationService";
 import { Authenticator } from "./util/authenticator";
 
-// var argv = require('optimist')
-//     .default('x', 10)
-//     .default('y', 10)
-//     .argv
-// ;
-// console.log(argv.x + argv.y);
-
-
 var argv = require("optimist")
     .usage("\n\nUsage: $0 [-k keyword] [-o outputFile] soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl")
     .default('k', "Microsoft")
