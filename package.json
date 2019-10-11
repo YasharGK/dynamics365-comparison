@@ -1,10 +1,13 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "1.1.4",
+  "version": "1.1.9",
   "description": "Script to visually compare Dynamics 365 artefacts, like plug-ins and endpoints, between a source and destination environment",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YasharGK/dynamics365-comparison.git"
+  },
   "keywords": [
     "dynamics 365 comparison",
     "dynamics365 comparison",
@@ -23,13 +26,11 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/index.js",
-  "bin": {
-    "dynamics365-comparison": "./lib/index.js"
-  },
-  "types": "lib/index",
+  "main": "./lib/cli.js",
+  "bin": "./lib/cli.js",
+  "types": "lib/cli",
   "scripts": {
-    "start": "npm run build && node lib/index.js \"\" \"index.html\"",
+    "start": "npm run build && node lib/cli.js \"\" \"index.html\"",
     "report": "node report-generator.js",
     "clean": "rimraf lib && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "adal-node": "^0.2.1",
+    "cli-spinner": "^0.2.10",
     "colors": "^1.4.0",
     "create-html": "^4.1.0",
     "diff": "^4.0.1",
