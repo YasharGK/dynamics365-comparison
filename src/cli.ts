@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs = require("fs");
 import open = require("open");
 import { CrmOrganisationService } from "./services/CrmOrganisationService";
