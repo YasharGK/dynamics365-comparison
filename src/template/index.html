@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Dynamics 365 CE Plugin Comparison</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Dynamics 365 CE Plugin Comparison</h2>
+    <p>Differences between the Source and Desination environment:</p>
+    <pre id="display"></pre>
+    <script src="diff.min.js"></script>
+    <script>
+      var source = '{___A___}',
+        destination = '{___B___}',
+        color = '',
+        span = null;
+
+      var diff = Diff.diffLines(source, destination),
+        display = document.getElementById('display'),
+        fragment = document.createDocumentFragment();
+
+      diff.forEach(function (part) {
+        color = part.added ? 'green' : part.removed ? 'red' : 'grey';
+        span = document.createElement('span');
+        span.style.color = color;
+        span.appendChild(document
+          .createTextNode(part.value));
+        fragment.appendChild(span);
+      });
+
+      display.appendChild(fragment);
+    </script>
+</body>
+
+</html>
