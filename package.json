@@ -1,7 +1,7 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "1.1.16",
+  "version": "0.0.1",
   "description": "A visual comparison tool for Dynamics 365 artefacts, like plug-ins and endpoints. Differences between a source and destination environment are shown in a HTML output file.",
   "license": "MIT",
   "repository": {
@@ -9,9 +9,9 @@
     "url": "https://github.com/YasharGK/dynamics365-comparison.git"
   },
   "keywords": [
+    "dynamics365",
     "dynamics 365 comparison",
-    "dynamics3  },5 comparison",
-    "dynamics3  },5",
+    "dynamics365 comparison",
     "crm",
     "ce",
     "sales",
@@ -27,7 +27,7 @@
     "lib"
   ],
   "main": "./lib/cli.js",
-  "bin":  "./lib/cli.js",
+  "bin": "./lib/cli.js",
   "types": "lib/cli",
   "scripts": {
     "start": "npm run build && node lib/cli.js -k \"Microsoft\" -o \"index.html\" soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl",
@@ -53,6 +53,7 @@
     "dotenv": "^8.1.0",
     "dynamics-web-api": "^1.5.10",
     "open": "^6.4.0",
+    "optimist": "^0.6.1",
     "typescript-collections": "^1.3.2"
   },
   "devDependencies": {

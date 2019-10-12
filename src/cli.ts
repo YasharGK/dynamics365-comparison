@@ -22,10 +22,10 @@ else {
     showHelp();
 }
 
-async function StartUp() {
+async function StartUp(): Promise<void> {
+    let Spinner = require('cli-spinner').Spinner;
+    let spinner = new Spinner('%s Initializing...');
     try {
-        let Spinner = require('cli-spinner').Spinner;
-        let spinner = new Spinner('%s Initializing...');
         spinner.setSpinnerString(3);
         spinner.start();
 
@@ -69,19 +69,20 @@ async function StartUp() {
         const destinationRepresenation: string = JSON.stringify(destinationArtefacts, null, 2);
 
         spinner.setSpinnerTitle('%s Generating report...');
-        let htmlContent: string = fs.readFileSync("lib/template/index.html", "utf8");
+        let htmlContent: string = fs.readFileSync(__dirname + "/template/index.html", "utf8");
         htmlContent = htmlContent.replace("{___A___}", escapeJSON(sourceRepresentation));
         htmlContent = htmlContent.replace("{___B___}", escapeJSON(destinationRepresenation));
-        fs.writeFile("lib/out/" + outputFile, htmlContent, (err: any) => {
+        fs.writeFile(__dirname + "/out/" + outputFile, htmlContent, (err: any) => {
             if (err) { throw err; }
         });
-
-        spinner.setSpinnerTitle('%s Generating report...');
-        await open("lib/out/" + outputFile);
+        await open(__dirname + "/out/" + outputFile);
         spinner.stop(true);
 
     } catch (error) {
         console.log('An error occured: ' + error);
+    }
+    finally {
+        spinner.stop(false);
     }
 }
 
