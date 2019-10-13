@@ -1,7 +1,7 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "A visual comparison tool for Dynamics 365 plug-in artefacts. Differences between a source and destination environment are shown in a HTML output file.",
   "license": "MIT",
   "repository": {
@@ -32,14 +32,14 @@
   "bin": "./lib/cli.js",
   "types": "lib/cli",
   "scripts": {
-    "start": "npm run build && node lib/cli.js -k \"Microsoft\" -o \"index.html\" soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl",
+    "start": "npm run build && node lib/cli.js -k \"Microsoft\" -o \"index.html\" source_authorityUrl source_resource source_clientId source_clientSecret source_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl",
     "report": "node report-generator.js",
     "clean": "rimraf lib && rimraf coverage",
     "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "lintFix": "tslint --fix \"src/**/*.ts\"",
     "prepublishOnly": "npm run build",
-    "prebuild": "npm run clean && copyfiles -f src/template/* lib/template && copyfiles -f node_modules/diff/dist/diff.min.js lib/out",
+    "prebuild": "npm run clean && copyfiles -f src/template/* lib/template",
     "build": "tsc --pretty",
     "test": "jest",
     "coverage": "jest --coverage",

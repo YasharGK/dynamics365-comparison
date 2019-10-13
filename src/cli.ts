@@ -19,7 +19,7 @@ var argv = require("optimist")
 
 if (argv._.length == 10) {
      StartUp().then(() => {
-        console.log('\nReport is opened in default browser.\nPress any key to exit...');
+        console.log('Press any key to exit...');
         stdin = process.stdin;
         stdin.on('data', function () {
             process.exit();
@@ -83,6 +83,9 @@ async function StartUp(): Promise<void> {
         fs.writeFile(outputFile, htmlContent, (err: any) => {
             if (err) { throw err; }
         });
+
+        console.log('\n\n\x1b[32m%s\x1b[0m', 'Report file is created: ' + outputFile); 
+        console.log('\nTrying to open Report in default browser...');
         await open(outputFile);
         spinner.stop(true);
 
