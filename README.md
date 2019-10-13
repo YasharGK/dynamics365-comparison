@@ -1,6 +1,6 @@
 # Dynamics 365 Comparison
 
-dynamics365-comparison is a node.js app that makes comparison of Dynamics 365 CRM / CE / CDS plug-in artefacts easier. Just run the app with the Source and Destination parameters and a HTML report will appear! 
+dynamics365-comparison is a node.js app that makes comparison of Dynamics 365 CRM / CE / CDS plug-in artefacts easier, developed by Yashar Ghouchibeik (y.ghouchibeik@orkestratie.nl). Just run the app with the Source and Destination parameters and a HTML report will appear! 
 
 Differences in artefacts or properties are shown in colors:
 * Red indicates where artfacts or properties are different/missing in Destination
