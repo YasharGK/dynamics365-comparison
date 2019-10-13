@@ -1,7 +1,7 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A visual comparison tool for Dynamics 365 artefacts, like plug-ins and endpoints. Differences between a source and destination environment are shown in a HTML output file.",
   "license": "MIT",
   "repository": {
@@ -13,6 +13,8 @@
     "dynamics 365 comparison",
     "dynamics365 comparison",
     "crm",
+    "common data service",
+    "cds",
     "ce",
     "sales",
     "customer engagement",

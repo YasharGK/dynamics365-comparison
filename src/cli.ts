@@ -5,6 +5,8 @@ import open = require("open");
 import { CrmOrganisationService } from "./services/CrmOrganisationService";
 import { Authenticator } from "./util/authenticator";
 
+var stdin: NodeJS.ReadStream;
+
 var argv = require("optimist")
     .usage("\n\nUsage: $0 [-k keyword] [-o outputFile] soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl")
     .default('k', "Microsoft")
@@ -16,7 +18,13 @@ var argv = require("optimist")
     .argv;
 
 if (argv._.length == 10) {
-    StartUp();
+     StartUp().then(() => {
+        console.log('\nReport is opened in default browser.\nPress any key to exit...');
+        stdin = process.stdin;
+        stdin.on('data', function () {
+            process.exit();
+        });
+     });
 }
 else {
     showHelp();
@@ -101,4 +109,6 @@ function escapeJSON(val: string) {
 function showHelp() {
     require("optimist").showHelp();
 }
+
+
 
