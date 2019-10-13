@@ -1,7 +1,7 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A visual comparison tool for Dynamics 365 plug-in artefacts. Differences between a source and destination environment are shown in a HTML output file.",
   "license": "MIT",
   "repository": {
@@ -49,10 +49,6 @@
   "dependencies": {
     "adal-node": "^0.2.1",
     "cli-spinner": "^0.2.10",
-    "colors": "^1.4.0",
-    "create-html": "^4.1.0",
-    "diff": "^4.0.1",
-    "dotenv": "^8.1.0",
     "dynamics-web-api": "^1.5.10",
     "open": "^6.4.0",
     "optimist": "^0.6.1",
