@@ -1,8 +1,8 @@
 {
   "name": "dynamics365-comparison",
   "author": "Yashar Ghouchibeik",
-  "version": "0.0.2",
-  "description": "A visual comparison tool for Dynamics 365 artefacts, like plug-ins and endpoints. Differences between a source and destination environment are shown in a HTML output file.",
+  "version": "0.0.4",
+  "description": "A visual comparison tool for Dynamics 365 plug-in artefacts. Differences between a source and destination environment are shown in a HTML output file.",
   "license": "MIT",
   "repository": {
     "type": "git",
