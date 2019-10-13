@@ -80,10 +80,10 @@ async function StartUp(): Promise<void> {
         let htmlContent: string = fs.readFileSync(__dirname + "/template/index.html", "utf8");
         htmlContent = htmlContent.replace("{___A___}", escapeJSON(sourceRepresentation));
         htmlContent = htmlContent.replace("{___B___}", escapeJSON(destinationRepresenation));
-        fs.writeFile(__dirname + "/out/" + outputFile, htmlContent, (err: any) => {
+        fs.writeFile(outputFile, htmlContent, (err: any) => {
             if (err) { throw err; }
         });
-        await open(__dirname + "/out/" + outputFile);
+        await open(outputFile);
         spinner.stop(true);
 
     } catch (error) {

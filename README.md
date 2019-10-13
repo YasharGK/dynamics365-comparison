@@ -14,10 +14,10 @@ npm install -g dynamics365-comparison
 If you are running `npm 5.2.0` or higher, you can try out workinHard without polluting global namespace. 
 Try this with:
 ```
-npx dynamics365-comparison [-k keyword] [-o outputFile] soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
+npx dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret source_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
 ```
 ### Usage
 To run:
 ```
-dynamics365-comparison [-k keyword] [-o outputFile] soure_authorityUrl soure_resource soure_clientId soure_clientSecret soure_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
+dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret source_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
 ```
