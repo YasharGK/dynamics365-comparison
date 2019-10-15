@@ -1,10 +1,5 @@
 import DynamicsWebApi = require("dynamics-web-api");
-import * as Collections from "typescript-collections";
 import { CrmOrganisation } from "../entities/crmOrganisation";
-import { Plugin } from "../entities/plugin";
-import { PluginAssembly } from "../entities/pluginAssembly";
-import { PluginStep } from "../entities/pluginStep";
-import { PluginStepImage } from "../entities/pluginStepImage";
 import { Authenticator } from "../util/authenticator";
 import { PluginAssemblyService } from "./pluginAssemblyService";
 import { PluginService } from "./pluginService";

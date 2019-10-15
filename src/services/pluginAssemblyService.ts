@@ -1,4 +1,3 @@
-import DynamicsWebApi = require("dynamics-web-api");
 import { PluginAssembly } from "../entities/pluginAssembly";
 import { Authenticator } from "../util/authenticator";
 import { CrmServiceBase } from "./base/CrmServiceBase";

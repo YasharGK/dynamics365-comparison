@@ -36,7 +36,7 @@ export class PluginStep extends BaseEntity {
     this.primaryEntity = primaryEntity;
     this.secondaryEntity = secondaryEntity;
     this.filteringAttributes = filteringAttributes;
-    this.runInUsersContext = "Test" + runInUsersContext;
+    this.runInUsersContext = runInUsersContext;
     this.executionOrder = executionOrder;
     this.description = description;
     this.pipelineExecutionStage = pipelineExecutionStage;

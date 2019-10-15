@@ -10,14 +10,17 @@ Differences in artefacts or properties are shown in colors:
 ```
 npm install -g dynamics365-comparison
 ```
-#### OR (npx)
+### OR (npx)
 If you are running `npm 5.2.0` or higher, you can try out workinHard without polluting global namespace. 
 Try this with:
 ```
-npx dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret source_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
+npx dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret destination_authorityUrl destination_resource destination_clientId destination_clientSecret
 ```
 ### Usage
 To run:
 ```
-dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret source_webAPIUrl destination_authorityUrl destination_resource destination_clientId destination_clientSecret destination_webAPIUrl
+dynamics365-comparison [-k keyword] [-o outputFile] source_authorityUrl source_resource source_clientId source_clientSecret destination_authorityUrl destination_resource destination_clientId destination_clientSecret
 ```
+
+## Known issues
+* The output report might not open automatically in Windows (depending on default browser)
