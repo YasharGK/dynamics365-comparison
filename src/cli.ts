@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-
-import fs = require("fs");
-import open = require("open");
+import * as spinner from "cli-spinner";
+import * as optimist from "optimist";
+import * as fs from "fs";
+import * as open from "open";
+import * as HtmlHelper from "./util/htmlHelper"
 import { CrmOrganisationService } from "./services/CrmOrganisationService";
 import { Authenticator } from "./util/authenticator";
 
 var stdin: NodeJS.ReadStream;
 
-var argv = require("optimist")
+var argv = optimist
     .usage("\n\nUsage: $0 [-k keyword] [-o outputReportFile] [-s sourceOutputFile] [-d destinationOutputFile] soure_authorityUrl soure_resource soure_clientId soure_clientSecret destination_authorityUrl destination_resource destination_clientId destination_clientSecret")
     .default('k', 'Microsoft')
     .default('o', 'output.html')
@@ -22,17 +24,17 @@ var argv = require("optimist")
         "soure_authorityUrl": "Source OAuth Token Endpoint (https://login.microsoftonline.com/00000000-0000-0000-0000-000000000011/oauth2/token)",
         "soure_resource": "Source CRM Organization URL (https://myorg.crm.dynamics.com)",
         "soure_clientId": "Source Dynamics 365 Client Id (registered in Azure App Registrations)('00000000-0000-0000-0000-000000000001')",
-        "soure_clientSecret": "Source ClientSecret of given Client Id",
+        "soure_clientSecret": "Source ClientSecret for given ClientId",
 
         "destination_authorityUrl": "Destination OAuth Token Endpoint (https://login.microsoftonline.com/00000000-0000-0000-0000-000000000011/oauth2/token)",
         "destination_resource": "Destination CRM Organization URL (https://myorg.crm.dynamics.com)",
         "destination_clientId": "Destination Dynamics 365 Client Id (registered in Azure App Registrations) ('00000000-0000-0000-0000-000000000001')",
-        "destination_clientSecret": "Destination ClientSecret of given Client Id"
+        "destination_clientSecret": "Destination ClientSecret for given ClientId"
     })
     .argv;
 
-if (argv._.length == 10) {
-    StartUp().then(() => {
+if (argv._.length == 8) {
+     StartUp().then(() => {
         console.log('Press any key to exit...');
         stdin = process.stdin;
         stdin.on('data', function () {
@@ -45,11 +47,10 @@ else {
 }
 
 async function StartUp(): Promise<void> {
-    let Spinner = require('cli-spinner').Spinner;
-    let spinner = new Spinner('%s Initializing...');
+    let statusSpinner = new spinner.Spinner('%s Initializing...');
     try {
-        spinner.setSpinnerString(3);
-        spinner.start();
+        statusSpinner.setSpinnerString(3);
+        statusSpinner.start();
 
         let sourceAuthorityUrl: string = argv._[0];
         let sourceResourceUrl: string = argv._[1];
@@ -68,7 +69,7 @@ async function StartUp(): Promise<void> {
         const outputDestinationFile: string = argv.d;
         const outputReportFile: string = argv.o;
 
-        spinner.setSpinnerTitle('%s Retrieving the Source artefacts...');
+        statusSpinner.setSpinnerTitle('%s Retrieving the Source artefacts...');
         const sourceAuthenticator = new Authenticator(
             sourceAuthorityUrl,
             sourceResourceUrl,
@@ -83,7 +84,7 @@ async function StartUp(): Promise<void> {
             if (err) { throw err; }
         });
 
-        spinner.setSpinnerTitle('%s Retrieving the Destination artefacts...');
+        statusSpinner.setSpinnerTitle('%s Retrieving the Destination artefacts...');
         const destinationAuthenticator = new Authenticator(
             destinationAuthorityUrl,
             destinationResourceUrl,
@@ -98,10 +99,10 @@ async function StartUp(): Promise<void> {
             if (err) { throw err; }
         });
 
-        spinner.setSpinnerTitle('%s Generating report...');
+        statusSpinner.setSpinnerTitle('%s Generating report...');
         let htmlContent: string = fs.readFileSync(__dirname + "/template/index.html", "utf8");
-        htmlContent = htmlContent.replace("{___A___}", escapeJSON(sourceRepresentation));
-        htmlContent = htmlContent.replace("{___B___}", escapeJSON(destinationRepresenation));
+        htmlContent = htmlContent.replace("{___A___}", HtmlHelper.escapeJSON(sourceRepresentation));
+        htmlContent = htmlContent.replace("{___B___}", HtmlHelper.escapeJSON(destinationRepresenation));
         fs.writeFile(outputReportFile, htmlContent, (err: any) => {
             if (err) { throw err; }
         });
@@ -109,30 +110,18 @@ async function StartUp(): Promise<void> {
         console.log('\n\n\x1b[32m%s\x1b[0m', 'Report file is created: ' + outputReportFile);
         console.log('\nTrying to open Report in default browser (might not work in Windows)...');
         await open(outputReportFile);
-        spinner.stop(true);
+        statusSpinner.stop(true);
 
     } catch (error) {
         console.log('An error occured: ' + error);
     }
     finally {
-        spinner.stop(false);
+        statusSpinner.stop(false);
     }
 }
 
-function escapeJSON(val: string) {
-    return val
-        .replace(/[\\]/g, "\\\\")
-        .replace(/[\/]/g, "\\/")
-        .replace(/[\b]/g, "\\b")
-        .replace(/[\f]/g, "\\f")
-        .replace(/[\n]/g, "\\n")
-        .replace(/[\r]/g, "\\r")
-        .replace(/[\t]/g, "\\t")
-        ;
-}
-
 function showHelp() {
-    require("optimist").showHelp();
+    optimist.showHelp();
 }
 
 
