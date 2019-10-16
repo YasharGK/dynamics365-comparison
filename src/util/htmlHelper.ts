@@ -9,6 +9,3 @@ export function escapeJSON(val: string) {
         .replace(/[\t]/g, "\\t")
         ;
 }
-
-
-
